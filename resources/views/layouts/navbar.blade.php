@@ -6,7 +6,7 @@
          <div class="row" id="topNav">
             <div class="input-group col-4 inputTopNav">
                <span class="input-group-addon">Task</span>
-               <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter task name here..." value="<?= $taskNameVal; ?>">
+               <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter task name here..." value="">
             </div>   
             <div class="col select-style">
                <select name="client_id" id="clientDrop">
