@@ -19,7 +19,7 @@
 			<td>{{ $task->created_at->toFormattedDateString() }}</td>
 			<td>Need to add client</td>
 			<td>{{ $task->task_name }}</td>
-			<td></td>
+			<td>{{ $task->clock_in->timestamp }}</td>
 			<td> </td>
 		</tr>
 @endforeach
