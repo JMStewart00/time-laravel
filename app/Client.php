@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 class Client extends Model
 {
     //

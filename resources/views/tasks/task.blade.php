@@ -1,9 +1,3 @@
-<!-- <script>
-   function outputUpdate(vol) {
-      document.querySelector('#volume').value = vol;
-      console.log('vol');
-   }
-</script> -->
 
  <form method="post" action="/">
    {{ csrf_field() }}
@@ -16,7 +10,10 @@
             </div>   
             <div class="col select-style">
                <select name="client_id" id="clientDrop">
-                  <option selected>Client</option>
+                  <option selected>clients</option>
+                  @foreach ($clients as $client)
+                     <option value={{$client['id']}}>{{$client['name']}}</option>
+                  @endforeach
                </select>
             </div>
 
