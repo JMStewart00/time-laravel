@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Task;
+use App\Client;
 
 class TasksController extends Controller
 {
     public function index() 
     {
     	$tasks = Task::latest()->get();
-		return view('tasks.index', compact('tasks'));
+        $clients = Client::all();
+		return view('tasks.index', compact('tasks', 'clients'));
     }
 
-    public function store(Request $request)
+    public function store()
     {
-    	$task = new Task;
-    	$task->task_name = $request->input('task_name');
-    	$task->rate = $request->input('rate');
-    	$task->save();
+        Task::create(request(['task_name', 'rate', 'client_id']));
+
     	return back();
     }
 

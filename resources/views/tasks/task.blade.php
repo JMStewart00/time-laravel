@@ -1,4 +1,3 @@
-
  <form method="post" action="/">
    {{ csrf_field() }}
       <input type="hidden" name="task_id" value="">
@@ -10,7 +9,10 @@
             </div>   
             <div class="col select-style">
                <select name="client_id" id="clientDrop">
-                  <option selected>Client</option>
+                  <option selected>clients</option>
+                  @foreach ($clients as $client)
+                     <option value={{$client['id']}}>{{$client['name']}}</option>
+                  @endforeach
                </select>
             </div>
 
@@ -18,7 +20,7 @@
                <label type="text" class="input-group-addon" aria-label="Text input with checkbox">Rate</label>
                <label type="text" class="input-group-addon" aria-label="Text input with checkbox">$</label>
                <label class="input-group-addon" for="fader"><output for="fader" id="volume">100</output></label>
-               <input class="ml-2" type="range" min="5" max="200" value="" id="fader" step="5" name="rate" oninput="outputUpdate(value)">
+               <input class="ml-2" type="range" min="5" max="200" value="100" id="fader" step="5" name="rate">
             </div>
             <button class="btn" value="" name="submit" type="submit">
                <i class="fa fa-play" aria-hidden="true"></i>   
