@@ -19,8 +19,8 @@
 			<td>{{ $task->created_at->toFormattedDateString() }}</td>
 			<td>Need to add client</td>
 			<td>{{ $task->task_name }}</td>
-			<td>{{ $task->clock_in->timestamp }}</td>
-			<td> </td>
+			<td>{{ sprintf("%.2f",((strtotime($task['clock_out']) - strtotime($task['clock_in'])) / 60) / 60)}} hrs</td>
+			<td></td>
 		</tr>
 @endforeach
 	</tbody>
