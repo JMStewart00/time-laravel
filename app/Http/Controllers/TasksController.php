@@ -11,6 +11,7 @@ class TasksController extends Controller
 {
     public function index() 
     {
+
     	$tasks = Task::latest()->get();
         $clients = Client::all();
 		return view('tasks.index', compact('tasks', 'clients'));
@@ -28,5 +29,6 @@ class TasksController extends Controller
 
     	return back();
     }
+
 
 }
