@@ -12,7 +12,6 @@
  </head>
  <body>
   <nav class="text-center navbar fixed-top d-block bg-inverse">
-  
     @include('tasks.task')
    </nav>
 

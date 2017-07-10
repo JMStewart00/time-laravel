@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\Task;
 
 class ClientsController extends Controller
 
@@ -16,7 +17,9 @@ class ClientsController extends Controller
 
     public function show(Client $client) 
     { 
-      return view('clients.client', compact('client'));
+      $tasks = Task::latest()->get();
+      $clients = Client::all();
+      return view('clients.client', compact('client', 'clients', 'tasks'));
     }
 
     public function store(Request $request) 
