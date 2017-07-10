@@ -4,7 +4,7 @@
 @endphp
  <form method="post" action="/">
    @if ($taskRunning)
-      {{ method_field('PATCH') }}
+      {{ method_field('PATCH') }} 
    @endif
    {{ csrf_field() }}
       <input type="hidden" name="task_id" value="">
@@ -43,7 +43,7 @@
                @endif
             </div>
             @if ($taskRunning)
-               <button class="btn btn-danger" value="" name="submit" value="start_task" type="submit">
+               <button id="starts_time" class="btn btn-danger" value="" name="submit" value="start_task" type="submit">
                <i class="fa fa-stop-circle" aria-hidden="true"></i>   
                </button>
             @else
