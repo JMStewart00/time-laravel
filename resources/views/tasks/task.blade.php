@@ -1,6 +1,5 @@
 @php
    $taskRunning = isset(session()->all()['_runningtask']);
-   var_dump($taskRunning);
    $running_task = ($taskRunning) ? session()->all()['_runningtask'] : NULL;
 @endphp
  <form method="post" action="/">

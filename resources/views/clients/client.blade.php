@@ -44,13 +44,13 @@
 
 
 				<div class="col">
-					<p>{{$task->clock_in}}</p>
+					<p>{{date("m/d/y",strtotime($task->clock_in))}}</p>
 				</div>
 				<div class="col">
-					<p>{{$task->clock_in}}</p>
+					<p>{{date("h:i a",strtotime($task->clock_in))}}</p>
 				</div>
 				<div class="col">
-					<p>{{$task->clock_out}}</p>
+					<p>{{date("h:i a",strtotime($task->clock_out))}}</p>
 				</div>
 				<div class="col">
 					<p>{{sprintf("%.2f",((strtotime($task['clock_out']) - strtotime($task['clock_in'])) / 60) / 60)}}</p>

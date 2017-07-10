@@ -17,7 +17,7 @@ class ClientsController extends Controller
 
     public function show(Client $client) 
     { 
-      $tasks = Task::orderBy('task_name')->where('client_id', '=', $client->id)->get();
+      $tasks = Task::orderBy('task_name')->orderBy('clock_in', 'desc')->where('client_id', '=', $client->id)->get();
       
       $uniques = Task::distinct()->where('client_id', '=', $client->id)->get(['task_name'])->all();
       
