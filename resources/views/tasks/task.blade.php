@@ -1,4 +1,7 @@
-
+@php
+   $taskRunning = isset(session()->all()['_runningtask']);
+   $running_task = ($taskRunning) ? session()->all()['_runningtask'] : NULL;
+@endphp
  <form method="post" action="/">
    {{ csrf_field() }}
       <input type="hidden" name="task_id" value="">
@@ -6,13 +9,21 @@
          <div class="row" id="topNav">
             <div class="input-group col-4 inputTopNav">
                <span class="input-group-addon">Task</span>
-               <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter task name here..." value="">
+               @if ($taskRunning)
+                  <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter task name here..." value="{{$running_task['task_name']}}">
+               @else
+                  <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter task name here..." value="">
+               @endif
             </div>   
             <div class="col select-style">
                <select name="client_id" id="clientDrop">
-                  <option selected>clients</option>
+                  <option>clients</option>
                   @foreach ($clients as $client)
-                     <option value={{$client['id']}}>{{$client['name']}}</option>
+                     @if ($taskRunning and $client['id'] === intval($running_task['client_id']))
+                        <option selected value={{$client['id']}}>{{$client['name']}}</option>
+                     @else
+                        <option value={{$client['id']}}>{{$client['name']}}</option>
+                     @endif
                   @endforeach
                </select>
             </div>
@@ -23,9 +34,15 @@
                <label class="input-group-addon" for="fader"><output for="fader" id="volume">100</output></label>
                <input class="ml-2" type="range" min="5" max="200" value="100" id="fader" step="5" name="rate">
             </div>
-            <button class="btn" value="" name="submit" type="submit">
+            @if ($taskRunning)
+               <button class="btn btn-danger" value="" name="submit" value="start_task" type="submit">
+               <i class="fa fa-stop-circle" aria-hidden="true"></i>   
+               </button>
+            @else
+               <button class="btn btn-success" value="" name="submit" value="start_task" type="submit">
                <i class="fa fa-play" aria-hidden="true"></i>   
-            </button>
+               </button>
+            @endif
          </div>
          </div>
       </form>

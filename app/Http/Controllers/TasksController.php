@@ -13,11 +13,12 @@ class TasksController extends Controller
 {
     public function index() 
     {
-        $pendingTask = Task::whereNull('clock_out')->get();
-        $tasks = Task::latest()->get();
+
+        //$pendingTask = Task::whereNull('clock_out')->get();
+    	$tasks = Task::latest()->get();
         $clients = Client::all();
 
-        return view('tasks.index', compact('tasks', 'clients', 'pendingTask'));
+		return view('tasks.index', compact('tasks', 'clients'));
     }
 
     public function store(Request $request)
@@ -29,15 +30,15 @@ class TasksController extends Controller
         ]);
         
         Task::create(request(['task_name', 'rate', 'client_id']));
-        session()->flash("success", "Added Task");
-        return back();
+        session()->flash("_runningtask", array(
+            'task_name' => request('task_name'), 
+            'client_id' => request('client_id'), 
+            'rate' => request('rate'), 
+            ));
+    	return back();
     }
 
-    public function messages (){
-        return [
-            'client_id.integer' => 'Please select a client...'
-        ];
-    }
+
 
 
 }
