@@ -16,7 +16,7 @@
 	</thead>
 	<tbody>
 @foreach ($tasks as $task)
-	@if (is_null($task['clock_in']))
+	@if (!is_null($task['clock_out']))
 		<tr>
 			<td>{{ $task->created_at->toFormattedDateString() }}</td>
 			<td>Need to add client</td>
