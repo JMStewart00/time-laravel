@@ -22,7 +22,6 @@ class TasksController extends Controller
 
     public function store(Request $request)
     {   
-
         $this->validate(request(), [
             'task_name' => 'required|string|max:50',
             'rate' => 'required|integer',
@@ -30,7 +29,6 @@ class TasksController extends Controller
         ]);
         
         Task::create(request(['task_name', 'rate', 'client_id']));
-
         session()->flash("success", "Added Task");
     	return back();
     }
