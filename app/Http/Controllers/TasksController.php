@@ -12,14 +12,14 @@ class TasksController extends Controller
     public function index() 
     {
 
-    	$tasks = Task::latest()->get();
+        $tasks = Task::latest()->get();
         $clients = Client::all();
-		return view('tasks.index', compact('tasks', 'clients'));
+        return view('tasks.index', compact('tasks', 'clients'));
     }
 
     public function store()
     {   
-        $this->validate($request, [
+        $this->validate(request(), [
             'task_name' => 'required',
             'rate' => 'required',
             'client_id' => 'required',
@@ -27,7 +27,7 @@ class TasksController extends Controller
         
         Task::create(request(['task_name', 'rate', 'client_id']));
 
-    	return back();
+        return back();
     }
 
 
