@@ -2,7 +2,14 @@
 
 @section('content')
 
+@if (session()->has("success"))
+	<h2>success</h2>
+@endif
+@foreach ($errors->all() as $error)
+<p>{{$error}}</p>
+@endforeach
 
+{{$pendingTask}}
 <table class="table">
 	<thead>
 		<tr>

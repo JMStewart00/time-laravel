@@ -100,8 +100,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'client_id' => [
+            'integer' => 'Please select a client...',
         ],
     ],
 
