@@ -39,7 +39,7 @@
 
 
 
-				@if ($task->task_name === $unique->task_name)
+				@if ($task->task_name === $unique->task_name and !is_null($task['clock_out']))
 			<div class="row">
 
 

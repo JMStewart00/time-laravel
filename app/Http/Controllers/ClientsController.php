@@ -25,7 +25,7 @@ class ClientsController extends Controller
             $unique['total_hours'] = 0;
             $unique['rate'] = 0;
             foreach($tasks as $task) {
-              if ($task->task_name === $unique->task_name) {
+              if ($task->task_name === $unique->task_name && !is_null($task->clock_out)) {
                 $unique['rate'] = $task->rate;
                 $unique['total_hours'] += ((strtotime($task->clock_out) - strtotime($task->clock_in)) / 60) / 60;
               } 
