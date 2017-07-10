@@ -19,7 +19,7 @@ class ClientsController extends Controller
     { 
       $tasks = Task::latest()->get();
       $clients = Client::all();
-      return view('clients.client', compact('client', 'tasks', 'clients'));
+      return view('clients.client', compact('client', 'clients', 'tasks'));
     }
 
     public function store(Request $request) 

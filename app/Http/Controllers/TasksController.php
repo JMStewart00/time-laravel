@@ -13,6 +13,7 @@ class TasksController extends Controller
 {
     public function index() 
     {
+
         //$pendingTask = Task::whereNull('clock_out')->get();
     	$tasks = Task::latest()->get();
         $clients = Client::all();
@@ -29,7 +30,6 @@ class TasksController extends Controller
         ]);
         
         Task::create(request(['task_name', 'rate', 'client_id']));
-
         session()->flash("_runningtask", array(
             'task_name' => request('task_name'), 
             'client_id' => request('client_id'), 
