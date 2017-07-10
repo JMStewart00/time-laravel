@@ -17,9 +17,11 @@ class ClientsController extends Controller
 
     public function show(Client $client) 
     { 
-      $tasks = Task::latest()->get();
+      $tasks = Task::orderBy('task_name')->where('client_id', '=', $client->id)->get();
+      $uniques = Task::distinct()->where('client_id', '=', $client->id)->get(['task_name'])->all();
+      // dd($uniques);
       $clients = Client::all();
-      return view('clients.client', compact('client', 'clients', 'tasks'));
+      return view('clients.client', compact('client', 'clients', 'tasks', 'uniques'));
     }
 
     public function store(Request $request) 
