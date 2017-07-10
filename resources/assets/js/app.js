@@ -5,7 +5,7 @@
 
    function time () {
       s++;
-      console.log(Math.floor((s/60)/60 % 60) + ":" + Math.floor((s/60) % 60));
+      console.log(Math.floor((s/60)/60 % 60) + ":" + Math.floor((s/60) % 60) + ":" + Math.floor(s % 60));
    }
 
    $('#fader').on("input", function(val){
