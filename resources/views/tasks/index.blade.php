@@ -1,15 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-
-@if (session()->has("success"))
-	<h2>success</h2>
-@endif
 @foreach ($errors->all() as $error)
 <p>{{$error}}</p>
 @endforeach
-
-{{$pendingTask}}
 <table class="table">
 	<thead>
 		<tr>
@@ -22,6 +16,7 @@
 	</thead>
 	<tbody>
 @foreach ($tasks as $task)
+	@if (is_null($task['clock_in']))
 		<tr>
 			<td>{{ $task->created_at->toFormattedDateString() }}</td>
 			<td>Need to add client</td>
@@ -29,6 +24,7 @@
 			<td>{{ sprintf("%.2f",((strtotime($task['clock_out']) - strtotime($task['clock_in'])) / 60) / 60)}} hrs</td>
 			<td></td>
 		</tr>
+	@endif	
 @endforeach
 	</tbody>
 </table>
