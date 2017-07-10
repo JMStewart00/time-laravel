@@ -1,8 +1,12 @@
 @php
    $taskRunning = isset(session()->all()['_runningtask']);
+   var_dump($taskRunning);
    $running_task = ($taskRunning) ? session()->all()['_runningtask'] : NULL;
 @endphp
  <form method="post" action="/">
+   @if ($taskRunning)
+      {{ method_field('PATCH') }} 
+   @endif
    {{ csrf_field() }}
       <input type="hidden" name="task_id" value="">
       <div class="container p-0">
@@ -31,11 +35,16 @@
             <div class="input-group col inputTopNav">
                <label type="text" class="input-group-addon" aria-label="Text input with checkbox">Rate</label>
                <label type="text" class="input-group-addon" aria-label="Text input with checkbox">$</label>
-               <label class="input-group-addon" for="fader"><output for="fader" id="volume">100</output></label>
-               <input class="ml-2" type="range" min="5" max="200" value="100" id="fader" step="5" name="rate">
+               @if ($taskRunning)
+                  <label class="input-group-addon" for="fader"><output for="fader" id="volume">{{$running_task['rate']}}</output></label>
+                  <input class="ml-2" type="range" min="5" max="200" value="{{$running_task['rate']}}" id="fader" step="5" name="rate">
+               @else
+                  <label class="input-group-addon" for="fader"><output for="fader" id="volume">100</output></label>
+                  <input class="ml-2" type="range" min="5" max="200" value="100" id="fader" step="5" name="rate">
+               @endif
             </div>
             @if ($taskRunning)
-               <button class="btn btn-danger" value="" name="submit" value="start_task" type="submit">
+               <button id="starts_time" class="btn btn-danger" value="" name="submit" value="start_task" type="submit">
                <i class="fa fa-stop-circle" aria-hidden="true"></i>   
                </button>
             @else
