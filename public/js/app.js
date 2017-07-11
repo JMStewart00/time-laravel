@@ -76,7 +76,7 @@ module.exports = __webpack_require__(2);
 /***/ (function(module, exports) {
 
 if (Boolean($('#starts_time').length)) {
-   var s = 0;
+   var s = $('#timer span').attr('value');
    var timer = window.setInterval(time, 1000);
 }
 

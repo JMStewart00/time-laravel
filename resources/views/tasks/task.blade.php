@@ -2,10 +2,31 @@
 @php
    $taskRunning = isset(session()->all()['_runningtask']);
    $running_task = ($taskRunning) ? session()->all()['_runningtask'] : NULL;
-   if ($taskRunning === true) {
+   $runningTime = ($taskRunning) ? (strtotime(date('Y-m-d H:i:s')) - $running_task['created_at']) : "";
+   $clientName = "";
+   if ($taskRunning) {
+      $clientName = $clients->find(intval($running_task['client_id']))['name'];
       session()->reflash();
    }
+
+
 @endphp
+
+
+<script type="text/javascript">
+    
+    $('#task_name').autocomplete({
+      source : '{!!URL::route('autocomplete')!!}',
+      minlenght:1,
+      autoFocus:true,
+      select:function(e,ui){
+        alert(ui);
+        console.log('heyo');
+      }
+
+    });
+
+</script>
 
  <form method="post" action="/">
    @if ($taskRunning)
@@ -24,7 +45,9 @@
                @endif
             </div>   
             <div class="col select-style">
-               <select name="client_id" id="clientDrop">
+               <input id=client_id name="client_id" type="hidden" value="{{intval($running_task['client_id'])}}">
+               <input type="text" id="clientDrop" value="{{$clientName}}">
+               <!-- <select name="client_id" id="clientDrop">
                   <option>clients</option>
                   @foreach ($clients as $client)
                      @if ($taskRunning and $client['id'] === intval($running_task['client_id']))
@@ -33,7 +56,7 @@
                         <option value={{$client['id']}}>{{$client['name']}}</option>
                      @endif
                   @endforeach
-               </select>
+               </select> -->
             </div>
 
             <div class="input-group col inputTopNav">
@@ -57,7 +80,7 @@
                </button>
             @endif
             <div id="timer" class="col-1">
-               <span>00:00:00</span>
+               <span value="{{$runningTime}}"></span>
             </div>
          </div>
          </div>

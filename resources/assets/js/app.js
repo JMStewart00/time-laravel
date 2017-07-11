@@ -1,8 +1,7 @@
    if (Boolean($('#starts_time').length)){
-      var s = 0;
+      var s = $('#timer span').attr('value');
       let timer = window.setInterval(time, 1000);
    }
-
 
    function time () {
       s++;

@@ -33,6 +33,7 @@ class TasksController extends Controller
             'task_name' => request('task_name'), 
             'client_id' => request('client_id'), 
             'rate' => request('rate'), 
+            'created_at' => strtotime(Carbon::now()),
             ));
         return back();
     }
