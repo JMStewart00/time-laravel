@@ -75,14 +75,25 @@ module.exports = __webpack_require__(2);
 /* 1 */
 /***/ (function(module, exports) {
 
-if (!Boolean($('#starts_time').length)) {
-   var s = 9000;
+if (Boolean($('#starts_time').length)) {
+   var s = 0;
    var timer = window.setInterval(time, 1000);
 }
 
+console.log('test');
+
 function time() {
    s++;
-   console.log(Math.floor(s / 60 / 60 % 60) + ":" + Math.floor(s / 60 % 60));
+   var h = pad(Math.floor(s / 60 / 60 % 60)),
+       m = pad(Math.floor(s / 60 % 60)),
+       sec = pad(Math.floor(s % 60)),
+       timer = h + ":" + m + ":" + sec;
+   console.log(h + ":" + m + ":" + sec);
+   $('#timer span').html(timer);
+}
+
+function pad(d) {
+   return d < 10 ? '0' + d.toString() : d.toString();
 }
 
 $('#fader').on("input", function (val) {

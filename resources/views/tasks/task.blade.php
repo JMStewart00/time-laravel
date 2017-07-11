@@ -51,6 +51,9 @@
                <i class="fa fa-play" aria-hidden="true"></i>   
                </button>
             @endif
+            <div id="timer" class="col-1">
+               <span>00:00:00</span>
+            </div>
          </div>
          </div>
       </form>
