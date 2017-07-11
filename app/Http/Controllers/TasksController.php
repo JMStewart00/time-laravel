@@ -13,10 +13,10 @@ class TasksController extends Controller
     {
 
         //$pendingTask = Task::whereNull('clock_out')->get();
-    	$tasks = Task::latest()->get();
+        $tasks = Task::orderBy('clock_in', 'desc')->get();
         $clients = Client::all();
 
-		return view('tasks.index', compact('tasks', 'clients'));
+        return view('tasks.index', compact('tasks', 'clients'));
     }
 
     public function store(Request $request)
@@ -34,7 +34,7 @@ class TasksController extends Controller
             'client_id' => request('client_id'), 
             'rate' => request('rate'), 
             ));
-    	return back();
+        return back();
     }
 
     public function patch(){

@@ -18,7 +18,7 @@
 @foreach ($tasks as $task)
 	@if (!is_null($task['clock_out']))
 		<tr>
-			<td>{{ $task->created_at->toFormattedDateString() }}</td>
+			<td>{{ date("m/d/Y", strtotime($task->clock_in)) }}</td>
 			<td>Need to add client</td>
 			<td>{{ $task->task_name }}</td>
 			<td>{{ sprintf("%.2f",((strtotime($task['clock_out']) - strtotime($task['clock_in'])) / 60) / 60)}} hrs</td>
