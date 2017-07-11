@@ -4,13 +4,17 @@
    $taskRunning = isset(session()->all()['_runningtask']);
    $running_task = ($taskRunning) ? session()->all()['_runningtask'] : NULL;
    $runningTime = ($taskRunning) ? (strtotime(date('Y-m-d H:i:s')) - $running_task['created_at']) : "";
-   if ($taskRunning === true) {
+   $clientName = "";
+   if ($taskRunning) {
+      $clientName = $clients->find(intval($running_task['client_id']))['name'];
       session()->reflash();
    }
 
 
 @endphp
-   <script type="text/javascript">
+
+<script type="text/javascript">
+    
     $('#task_name').autocomplete({
       source : '{!!URL::route('autocomplete')!!}',
       minlenght:1,
@@ -21,7 +25,9 @@
       }
 
     });
+
 </script>
+
  <form method="post" action="/">
    @if ($taskRunning)
       {{ method_field('PATCH') }} 
@@ -39,8 +45,8 @@
                @endif
             </div>   
             <div class="col select-style">
-
-               <input type="text" name="client_id" id="clientDrop">
+               <input id=client_id name="client_id" type="hidden" value="{{intval($running_task['client_id'])}}">
+               <input type="text" id="clientDrop" value="{{$clientName}}">
                <!-- <select name="client_id" id="clientDrop">
                   <option>clients</option>
                   @foreach ($clients as $client)
