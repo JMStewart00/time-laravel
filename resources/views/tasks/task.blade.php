@@ -12,22 +12,6 @@
 
 @endphp
 
-
-<script type="text/javascript">
-    
-    $('#task_name').autocomplete({
-      source : '{!!URL::route('autocomplete')!!}',
-      minlenght:1,
-      autoFocus:true,
-      select:function(e,ui){
-        alert(ui);
-        console.log('heyo');
-      }
-
-    });
-
-</script>
-
  <form method="post" action="/">
    @if ($taskRunning)
       {{ method_field('PATCH') }} 
