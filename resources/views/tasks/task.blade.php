@@ -1,5 +1,4 @@
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 @php
    $taskRunning = isset(session()->all()['_runningtask']);
    $running_task = ($taskRunning) ? session()->all()['_runningtask'] : NULL;
@@ -7,18 +6,7 @@
       session()->reflash();
    }
 @endphp
-   <script type="text/javascript">
-    $('#task_name').autocomplete({
-      source : '{!!URL::route('autocomplete')!!}',
-      minlenght:1,
-      autoFocus:true,
-      select:function(e,ui){
-        alert(ui);
-        console.log('heyo');
-      }
 
-    });
-</script>
  <form method="post" action="/">
    @if ($taskRunning)
       {{ method_field('PATCH') }} 
@@ -79,3 +67,16 @@
 
   
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script type="text/javascript">
+
+    $('#task_name').autocomplete({
+      minLength: 0,
+      source : '{!!URL::route('autocomplete')!!}',
+      focus: function( event, ui ) {
+        $( "#task_name" ).val( ui.item.label );
+        return false;
+    }
+ });
+</script>

@@ -3,7 +3,6 @@
       let timer = window.setInterval(time, 1000);
    }
 
-   console.log('test');
 
    function time () {
       s++;
