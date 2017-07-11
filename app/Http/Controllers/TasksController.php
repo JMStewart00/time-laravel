@@ -52,9 +52,7 @@ class TasksController extends Controller
     public function autocomplete(Request $request)
     {
         $term=$request->term;
-        $data = Task::where('task_name','LIKE','%'.$term.'%')
-        ->take(10)
-        ->get();
+        $data = Task::distinct()->where('task_name','LIKE','%'.$term.'%')->get(['task_name']);
         $result=array();
         foreach ($data as $key => $v){
             $result[]=['value' =>$v->task_name];
