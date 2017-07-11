@@ -1,3 +1,7 @@
+html {
+  margin-bottom: 10%;
+}
+
 #taskHeader {
   background-color: lightgrey;
 }
