@@ -21,21 +21,23 @@
       <div class="container p-0">
          <div class="row" id="topNav">
             <div class="input-group col-4 inputTopNav">
-               <span class="input-group-addon">Task</span>
                @if ($taskRunning)
-                  <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter task name here..." value="{{$running_task['task_name']}}">
+                  <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" value="{{$running_task['task_name']}}">
                @else
-                  <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter task name here..." value="">
+                  <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter task name..." value="">
                @endif
             </div>   
-            <div class="col select-style">
             @if ($taskRunning)
+            <div class="input-group col-2 inputTopNav">
                <input id=client_id name="client_id" type="hidden" value="{{intval($running_task['client_id'])}}">
-            @else
-               @foreach ($clients as $client)
-               <input id=client_id name="client_id" type="hidden" value="{{$client['id']}}">
-               @endforeach
-               <input type="text" id="clientDrop" value="">
+               <input class="form-control" type="text" id="clientDrop" value="{{$ieclntName}}">
+            </div>
+            @else 
+            <div class="input-group col-2 inputTopNav">
+               <input id=client_id name="client_id" type="hidden" value="">
+               <input placeholder="Add Client..." class="form-control" type="text" id="clientDrop" value="{{$clientName}}">
+            </div>
+
             @endif
                <!-- <select name="client_id" id="clientDrop">
                   <option>clients</option>
@@ -47,7 +49,7 @@
                      @endif
                   @endforeach
                </select> -->
-            </div>
+            
 
             <div class="input-group col inputTopNav">
                <label type="text" class="input-group-addon" aria-label="Text input with checkbox">Rate</label>
@@ -74,6 +76,7 @@
             </div>
          </div>
          </div>
+         </div>
       </form>
       
 
@@ -81,23 +84,36 @@
   
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <script type="text/javascript">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
 
-    $('#task_name').autocomplete({
+   // Autocomplete list for TASK input, list in TasksController
+   $('#task_name').autocomplete({
       minLength: 0,
       source : '{!!URL::route('autocomplete')!!}',
       focus: function( event, ui ) {
-        $( "#task_name" ).val( ui.item.label );
-        return false;
+         $( "#task_name" ).val( ui.item.label );
+         return false;
       }
-      });
+   });
+
+   // Autocomplete list for client input, list in ClientController
    $('#clientDrop').autocomplete({
       minLength: 0,
       source : '{!!URL::route('autocompleteClient')!!}',
-      focus: function( event, ui ) {
-        $( "#clientDrop" ).val( ui.item.label );
-        return false;
+      focus: function(event, ui) {
+         $(this).autocomplete("search", "");
+         $( "#clientDrop" ).val( ui.item.value );
+         return false;
+      },
+      select: function (event, ui) {
+         $( "#client_id" ).val( ui.item.id );
       }
-      });
+   });
+
+   // Drops down list on focus of Client inbox
+   $('#clientDrop').on( "focus", function( event, ui ) {
+         $(this).trigger(jQuery.Event("keydown"));
+      // Since I know keydown opens the menu, might as well fire a keydown event to the element
+   });
 </script>

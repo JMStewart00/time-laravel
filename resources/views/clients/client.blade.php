@@ -4,7 +4,7 @@
 <div class="container text-center">
 
 	@foreach ($uniques as $unique)
-
+		@if ($unique->total_hours > 0)	
 			<div class="row" id="taskHeader">
 				<div class="col text-left">
 					<h2>{{$unique->task_name}}</h2>
@@ -33,6 +33,7 @@
 				</div>
 			</div>
 
+		@endif
 
 		@foreach ($tasks as $task)
 

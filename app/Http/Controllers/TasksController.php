@@ -65,7 +65,10 @@ class TasksController extends Controller
         $data = Client::distinct()->where('name','LIKE','%'.$term.'%')->get();
         $result=array();
         foreach ($data as $key => $v){
-            $result[]=['value' =>$v->name];
+            $result[]=[
+            'value' =>$v->name,
+            'id' => $v->id
+            ];
         }
         return response()->json($result);
     }
