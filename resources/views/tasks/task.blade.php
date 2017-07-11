@@ -3,9 +3,12 @@
 @php
    $taskRunning = isset(session()->all()['_runningtask']);
    $running_task = ($taskRunning) ? session()->all()['_runningtask'] : NULL;
+   $runningTime = ($taskRunning) ? (strtotime(date('Y-m-d H:i:s')) - $running_task['created_at']) : "";
    if ($taskRunning === true) {
       session()->reflash();
    }
+
+
 @endphp
    <script type="text/javascript">
     $('#task_name').autocomplete({
@@ -36,7 +39,9 @@
                @endif
             </div>   
             <div class="col select-style">
-               <select name="client_id" id="clientDrop">
+
+               <input type="text" name="client_id" id="clientDrop">
+               <!-- <select name="client_id" id="clientDrop">
                   <option>clients</option>
                   @foreach ($clients as $client)
                      @if ($taskRunning and $client['id'] === intval($running_task['client_id']))
@@ -45,7 +50,7 @@
                         <option value={{$client['id']}}>{{$client['name']}}</option>
                      @endif
                   @endforeach
-               </select>
+               </select> -->
             </div>
 
             <div class="input-group col inputTopNav">
@@ -69,7 +74,7 @@
                </button>
             @endif
             <div id="timer" class="col-1">
-               <span>00:00:00</span>
+               <span value="{{$runningTime}}"></span>
             </div>
          </div>
          </div>

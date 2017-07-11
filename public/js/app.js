@@ -76,15 +76,12 @@ module.exports = __webpack_require__(2);
 /***/ (function(module, exports) {
 
 if (Boolean($('#starts_time').length)) {
-   var s = 0;
+   var s = $('#timer span').attr('value');
    var timer = window.setInterval(time, 1000);
 }
 
-console.log('test');
-
 function time() {
    s++;
-<<<<<<< HEAD
    var h = pad(Math.floor(s / 60 / 60 % 60)),
        m = pad(Math.floor(s / 60 % 60)),
        sec = pad(Math.floor(s % 60)),
@@ -95,9 +92,6 @@ function time() {
 
 function pad(d) {
    return d < 10 ? '0' + d.toString() : d.toString();
-=======
-   console.log(Math.floor(s / 60 / 60 % 60) + ":" + Math.floor(s / 60 % 60) + ":" + Math.floor(s % 60));
->>>>>>> 6a3aa21fc2a788d8404c5093955a332015cc0607
 }
 
 $('#fader').on("input", function (val) {
