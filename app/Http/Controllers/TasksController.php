@@ -9,13 +9,13 @@ use App\Client;
 
 class TasksController extends Controller
 {
-    public function index() 
+    public function index(Client $client) 
     {
 
         //$pendingTask = Task::whereNull('clock_out')->get();
         $tasks = Task::orderBy('clock_in', 'desc')->get();
         $clients = Client::all();
-
+        // dd($clients);
         return view('tasks.index', compact('tasks', 'clients'));
     }
 
@@ -47,6 +47,20 @@ class TasksController extends Controller
         $task->save();
         return back();
     }
+
+    public function autocomplete(Request $request)
+    {
+        $term=$request->term;
+        $data = Task::where('task_name','LIKE','%'.$term.'%')
+        ->take(10)
+        ->get();
+        $result=array();
+        foreach ($data as $key => $v){
+            $result[]=['value' =>$v->task_name];
+        }
+        return response()->json($result);
+    }
+
 
 
 
