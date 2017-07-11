@@ -59,6 +59,16 @@ class TasksController extends Controller
         }
         return response()->json($result);
     }
+    public function autocompleteClient(Request $request)
+    {
+        $term=$request->term;
+        $data = Client::distinct()->where('name','LIKE','%'.$term.'%')->get();
+        $result=array();
+        foreach ($data as $key => $v){
+            $result[]=['value' =>$v->name];
+        }
+        return response()->json($result);
+    }
 
 
 

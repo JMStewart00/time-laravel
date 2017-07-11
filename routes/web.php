@@ -11,3 +11,4 @@ Route::get('clients/{client}', 'ClientsController@show');
 Route::post('/clients', 'ClientsController@store');
 
 Route::get("autocomplete",array('as'=>'autocomplete','uses'=> 'TasksController@autocomplete'));
+Route::get("autocompleteClient",array('as'=>'autocompleteClient','uses'=> 'TasksController@autocompleteClient'));

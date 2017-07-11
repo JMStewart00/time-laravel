@@ -29,8 +29,14 @@
                @endif
             </div>   
             <div class="col select-style">
+            @if ($taskRunning)
                <input id=client_id name="client_id" type="hidden" value="{{intval($running_task['client_id'])}}">
-               <input type="text" id="clientDrop" value="{{$clientName}}">
+            @else
+               @foreach ($clients as $client)
+               <input id=client_id name="client_id" type="hidden" value="{{$client['id']}}">
+               @endforeach
+               <input type="text" id="clientDrop" value="">
+            @endif
                <!-- <select name="client_id" id="clientDrop">
                   <option>clients</option>
                   @foreach ($clients as $client)
@@ -84,6 +90,14 @@
       focus: function( event, ui ) {
         $( "#task_name" ).val( ui.item.label );
         return false;
-    }
- });
+      }
+      });
+   $('#clientDrop').autocomplete({
+      minLength: 0,
+      source : '{!!URL::route('autocompleteClient')!!}',
+      focus: function( event, ui ) {
+        $( "#clientDrop" ).val( ui.item.label );
+        return false;
+      }
+      });
 </script>
