@@ -80,6 +80,8 @@ if (Boolean($('#starts_time').length)) {
    var timer = window.setInterval(time, 1000);
 }
 
+console.log('test');
+
 function time() {
    s++;
    var h = pad(Math.floor(s / 60 / 60 % 60)),

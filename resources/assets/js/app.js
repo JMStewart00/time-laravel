@@ -3,6 +3,8 @@
       let timer = window.setInterval(time, 1000);
    }
 
+   console.log('test');
+
    function time () {
       s++;
       let h = pad(Math.floor((s/60)/60 % 60)),
