@@ -2,10 +2,16 @@
 @section('content')
 <h1 class="text-center">{{$client->name}}</h1>
 <div class="container text-center">
+	<div class="row my-3">
+		<div class="col-6 offset-3">
+			<button class="btn btn-info w-100 disabled">Generate Invoice</button>
+		</div>
+	</div>
 
 	@foreach ($uniques as $unique)
 		@if ($unique->total_hours > 0)	
 			<div class="row" id="taskHeader">
+
 				<div class="col text-left">
 					<h2>{{$unique->task_name}}</h2>
 				</div>
@@ -19,6 +25,7 @@
 
 
 			<div class="row">
+			<div class="col-1"></div>
 				<div class="col">
 					<h4>Date</h4>
 				</div>
@@ -37,12 +44,14 @@
 
 		@foreach ($tasks as $task)
 
-
-
-
 				@if ($task->task_name === $unique->task_name and !is_null($task['clock_out']))
 			<div class="row">
-
+			<div class="col-1 btn-group btn-group-sm" data-toggle="buttons">
+				<label class="btn btn-outline-success">
+				<input type="checkbox" autocomplete="off" value="{{$task->id}}" name="check">
+				<span class="fa fa-check"></span>
+			</label>
+			</div>
 
 				<div class="col">
 					<p>{{date("m/d/y",strtotime($task->clock_in))}}</p>

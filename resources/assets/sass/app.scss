@@ -11,7 +11,7 @@ $mainF: 'Open Sans', sans-serif;
 
 
 html {
-	margin-bottom: 75px;
+  margin-bottom: 75px;
 }
 
 #main_content {
@@ -19,7 +19,7 @@ html {
 }
 
 #taskHeader{
-	background-color: lightgrey;
+  background-color: lightgrey;
 }
 
 #timer span{
@@ -78,8 +78,6 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
-  *border-right-width: 2px;
-  *border-bottom-width: 2px;
 
 }
   .ui-menu-item > a.ui-corner-all {
@@ -118,5 +116,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .ui-menu-item-wrapper {
-	padding-left: 2em;
+  padding-left: 2em;
+}
+
+.btn span.fa {         
+  opacity: 0;       
+}
+.btn.active span.fa {        
+  opacity: 1;       
 }
