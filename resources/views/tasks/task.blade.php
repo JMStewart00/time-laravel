@@ -30,7 +30,7 @@
             @if ($taskRunning)
             <div class="input-group col-2 inputTopNav">
                <input id=client_id name="client_id" type="hidden" value="{{intval($running_task['client_id'])}}">
-               <input class="form-control" type="text" id="clientDrop" value="{{$ieclntName}}">
+               <input class="form-control" type="text" id="clientDrop" value="{{$clientName}}">
             </div>
             @else 
             <div class="input-group col-2 inputTopNav">
@@ -102,7 +102,6 @@
       minLength: 0,
       source : '{!!URL::route('autocompleteClient')!!}',
       focus: function(event, ui) {
-         $(this).autocomplete("search", "");
          $( "#clientDrop" ).val( ui.item.value );
          return false;
       },
@@ -114,6 +113,7 @@
    // Drops down list on focus of Client inbox
    $('#clientDrop').on( "focus", function( event, ui ) {
          $(this).trigger(jQuery.Event("keydown"));
+         event.stopPropagation();
       // Since I know keydown opens the menu, might as well fire a keydown event to the element
    });
 </script>

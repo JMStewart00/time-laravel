@@ -1,9 +1,12 @@
 <?php
 
+
 // tasks
 Route::get('/', 'TasksController@index'); 
 Route::post('/', 'TasksController@store');
 Route::patch('/', 'TasksController@patch');
+
+// Route::resource('/', 'TasksController');
 
 // clients
 Route::get('clients', 'ClientsController@index');
