@@ -58,5 +58,22 @@
       // Since I know keydown opens the menu, might as well fire a keydown event to the element
    });
 
+   $("input[name=check]").click(function(e) {
+    e.preventDefault();
+    $(this).trigger("change");
+  });
+
+   $("input[name=check]").change(function() {
+     var searchIDs = $("input:checkbox:checked").map(function(){
+        return $(this).val();
+    }).toArray();
+    console.log(searchIDs);
+    });
+
+
+
+
+
+
 
 
