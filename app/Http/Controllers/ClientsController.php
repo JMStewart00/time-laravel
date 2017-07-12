@@ -32,10 +32,7 @@ class ClientsController extends Controller
               } 
             }
 
-          }
-
-      // dd($uniques);
-      
+          }      
       $clients = Client::all();
       
       return view('clients.client', compact('client', 'clients', 'tasks', 'uniques'));
@@ -47,5 +44,12 @@ class ClientsController extends Controller
       $client->name = $request->input('client_name');
       $client->save();
       return back();
+    }
+
+    public function patch(){
+      return "patch";
+    }
+    public function destroy(){
+      return "delete";
     }
 }

@@ -1,15 +1,30 @@
 @extends('layouts.master')
-
 @section('content')
-   <form method="post" action="/clients">
-      {{ csrf_field() }}
-      <input name="client_name" type="text">
-      <button type="submit">Add</button>
-   </form>
-   <ul>
-      @foreach ($clients as $client)
-         <li><a href="/clients/{{$client->id}}">{{$client->name}}</a></li>
-      @endforeach
-   </ul>
-
+<div class="container-fluid">
+   <div class="row">
+      <div id="client_list" class="col-sm-10 col-md-8 mx-auto">
+         <div class="row">
+            <form id="add_clients"  class="col p-5 mx-auto" method="POST" action="/clients">
+               {{ csrf_field() }}
+               <div class="input-group">
+                  <input type="text" class="form-control" name="client_name" placeholder="enter client name...">
+                  <span class="input-group-btn">
+                     <button class="btn btn-success px-5" name="submit" value="add_client" type="submit">Add</button>
+                  </span>
+               </div>
+            </form>
+         </div>
+         <div class="row">
+            @foreach ($clients as $client)
+            <div class="col-6 client p-3 text-center">
+               
+               <a class="text-muted px-5 py-2 d-block" href="/clients/{{$client->id}}">{{$client->name}}</a>
+               
+            </div>
+            @endforeach
+         </div>
+      </div>
+   </div>
+   
+</div>
 @endsection

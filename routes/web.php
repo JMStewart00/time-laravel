@@ -11,7 +11,11 @@ Route::patch('/', 'TasksController@patch');
 // clients
 Route::get('clients', 'ClientsController@index');
 Route::get('clients/{client}', 'ClientsController@show');
-Route::post('/clients', 'ClientsController@store');
+Route::post('/clients/client', 'ClientsController@store');
+Route::patch('/clients/client', 'ClientsController@patch');
+Route::delete('/clients/client', 'ClientsController@destroy');
+
+
 
 Route::get("autocomplete",array('as'=>'autocomplete','uses'=> 'TasksController@autocomplete'));
 Route::get("autocompleteClient",array('as'=>'autocompleteClient','uses'=> 'TasksController@autocompleteClient'));
