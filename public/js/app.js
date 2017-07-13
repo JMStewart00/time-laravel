@@ -75,7 +75,6 @@ module.exports = __webpack_require__(2);
 /* 1 */
 /***/ (function(module, exports) {
 
-console.log(data);
 
 // checks for #starts_time id in DOM 
 if (Boolean($('#starts_time').length)) {

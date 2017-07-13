@@ -24,6 +24,12 @@ class ClientsController extends Controller
 
     public function show(Client $client) 
     { 
+
+      JavaScript::put([
+        'data' => Task::all(),
+      ]);
+
+
       $tasks = Task::orderBy('task_name')->orderBy('clock_in', 'desc')->where('client_id', '=', $client->id)->get();
       
       $uniques = Task::distinct()->where('client_id', '=', $client->id)->get(['task_name'])->all();
@@ -58,7 +64,7 @@ class ClientsController extends Controller
     public function destroy($id){
       Client::find($id)->delete();
       Task::where('client_id', '=', $id)->delete();
-      return back();
+      return redirect('clients');
     }
 
 }

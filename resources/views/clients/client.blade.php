@@ -4,7 +4,9 @@
 <div class="container text-center">
 	<div class="row my-3">
 		<div class="col-6 offset-3">
-			<button class="btn btn-info w-100 disabled">Generate Invoice</button>
+		<p>{{$client->id}}</p>
+			<button class="btn btn-info disabled">Generate Invoice</button>
+			  <button type="button" data-toggle="modal" data-target="#confirm" class="deleteBtn btn btn-sm btn-outline-danger border-0" value="{{$client->id}}"><i class="fa fa-trash fa-2x"></i></button>
 		</div>
 	</div>
 
