@@ -1,4 +1,3 @@
-console.log(data);
 
 // checks for #starts_time id in DOM 
    if (Boolean($('#starts_time').length)){
@@ -76,8 +75,12 @@ console.log(data);
    $(".deleteBtn").click(function(e){
       let id = e.target.value;
       $('#modalDelete').attr('action', '/clients/' + id);
-      $('#taskLists')
+      $('#taskLists').html(( () => getRelTasks(id,data) ));
    })
+
+   function getRelTasks (id, arr){
+      return arr.filter((a)=> a.client_id == id).length;
+   }
 
 
 

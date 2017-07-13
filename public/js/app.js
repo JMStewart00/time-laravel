@@ -152,8 +152,16 @@ $("input[name=check]").change(function () {
 $(".deleteBtn").click(function (e) {
    var id = e.target.value;
    $('#modalDelete').attr('action', '/clients/' + id);
-   $('#taskLists');
+   $('#taskLists').html(function () {
+      return getRelTasks(id, data);
+   });
 });
+
+function getRelTasks(id, arr) {
+   return arr.filter(function (a) {
+      return a.client_id == id;
+   }).length;
+}
 
 /***/ }),
 /* 2 */

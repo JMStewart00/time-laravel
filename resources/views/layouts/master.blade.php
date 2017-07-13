@@ -35,7 +35,7 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to delete this client and all associated tasks?</p>
-                <p id="taskLists"></div>
+                <p>this client has <span id="taskLists"></span> tasks assosiated with it!</p>
             </div>
             <div class="modal-footer">
             <form id="modalDelete" action="" method="post" class="d-inline-block col-2" >
@@ -57,6 +57,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
    <script src="{{URL::to('js/app.js')}}"></script>
+
+
 
  </body>
 </html>

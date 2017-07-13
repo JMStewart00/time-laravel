@@ -16,10 +16,8 @@ class ClientsController extends Controller
       $tasks = Task::all();
 
       JavaScript::put([
-        'data' => $tasks
-
-    ]);
-
+        'data' => $tasks->toArray(),
+      ]);
 
       return view('clients.index', compact('clients', 'tasks'));
     }
