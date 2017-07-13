@@ -147,6 +147,11 @@ $("input[name=check]").change(function () {
    console.log(searchIDs);
 });
 
+$(".deleteBtn").click(function (e) {
+   $('#modalDelete').attr('action', '/clients/' + e.target.value);
+   // $('#taskList')
+});
+
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {

@@ -71,6 +71,10 @@
     });
 
 
+   $(".deleteBtn").click(function(e){
+      $('#modalDelete').attr('action', '/clients/'+e.target.value);
+      // $('#taskList')
+   })
 
 
 

@@ -1,5 +1,9 @@
 @extends('layouts.master')
+
+
 @section('content')
+
+
 <div class="container-fluid">
    <div class="row">
       <div id="client_list" class="col-sm-10 col-md-8 mx-auto">
@@ -18,13 +22,19 @@
             @foreach ($clients as $client)
             <div class="col-6 client p-3 text-center">
                
-               <a class="text-muted px-5 py-2 d-block" href="/clients/{{$client->id}}">{{$client->name}}</a>
-               
+               <a class="text-muted px-5 py-2 col-8 d-inline-block" href="/clients/{{$client->id}}">{{$client->name}}</a>
+
+                  <button type="button" data-toggle="modal" data-target="#confirm" class="deleteBtn btn btn-sm btn-outline-danger border-0" value="{{$client->id}}"><i class="fa fa-trash fa-2x"></i></button>
+ 
             </div>
+
             @endforeach
          </div>
       </div>
    </div>
    
-</div>
+</div> <!-- end container -->
+
+
+
 @endsection

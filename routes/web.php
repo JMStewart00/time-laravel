@@ -13,7 +13,7 @@ Route::get('clients', 'ClientsController@index');
 Route::get('clients/{client}', 'ClientsController@show');
 Route::post('/clients/client', 'ClientsController@store');
 Route::patch('/clients/client', 'ClientsController@patch');
-Route::delete('/clients/client', 'ClientsController@destroy');
+Route::delete('/clients/{client}', 'ClientsController@destroy');
 
 
 

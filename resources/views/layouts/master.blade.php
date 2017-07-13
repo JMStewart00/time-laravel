@@ -26,6 +26,29 @@
 
   @include('layouts.footer')
  </div>
+ <div class="modal fade" id="confirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this client and all associated tasks?</p>
+            </div>
+            <div class="modal-footer">
+            <form id="modalDelete" action="" method="post" class="d-inline-block col-2" >
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-sm btn-danger" id="delete-btn">Delete</button>
+                              </form>
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

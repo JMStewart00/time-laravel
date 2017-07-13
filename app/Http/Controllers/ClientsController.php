@@ -49,7 +49,10 @@ class ClientsController extends Controller
     public function patch(){
       return "patch";
     }
-    public function destroy(){
-      return "delete";
+    public function destroy($id){
+      Client::find($id)->delete();
+      Task::where('client_id', '=', $id)->delete();
+      return back();
     }
+
 }

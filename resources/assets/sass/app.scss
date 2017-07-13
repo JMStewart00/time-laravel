@@ -112,7 +112,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #ui-id-1, #ui-id-2 {
-	padding: 0;
+  padding: 0;
 }
 
 .ui-menu-item-wrapper {
@@ -124,4 +124,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .btn.active span.fa {        
   opacity: 1;       
+}
+
+i {
+  pointer-events: none;
 }
