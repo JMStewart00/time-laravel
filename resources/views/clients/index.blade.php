@@ -3,7 +3,6 @@
 
 @section('content')
 
-
 <div class="container-fluid">
    <div class="row">
       <div id="client_list" class="col-sm-10 col-md-8 mx-auto">

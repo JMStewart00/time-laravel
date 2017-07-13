@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use App\Client;
 use App\Task;
 
@@ -13,6 +14,13 @@ class ClientsController extends Controller
     { 
       $clients = Client::all();
       $tasks = Task::all();
+
+      JavaScript::put([
+        'data' => $tasks
+
+    ]);
+
+
       return view('clients.index', compact('clients', 'tasks'));
     }
 

@@ -75,6 +75,8 @@ module.exports = __webpack_require__(2);
 /* 1 */
 /***/ (function(module, exports) {
 
+console.log(data);
+
 // checks for #starts_time id in DOM 
 if (Boolean($('#starts_time').length)) {
    // get value in span which is the diff bettween the current time 
@@ -148,8 +150,9 @@ $("input[name=check]").change(function () {
 });
 
 $(".deleteBtn").click(function (e) {
-   $('#modalDelete').attr('action', '/clients/' + e.target.value);
-   // $('#taskList')
+   var id = e.target.value;
+   $('#modalDelete').attr('action', '/clients/' + id);
+   $('#taskLists');
 });
 
 /***/ }),

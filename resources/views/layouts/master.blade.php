@@ -35,6 +35,7 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to delete this client and all associated tasks?</p>
+                <p id="taskLists"></div>
             </div>
             <div class="modal-footer">
             <form id="modalDelete" action="" method="post" class="d-inline-block col-2" >
