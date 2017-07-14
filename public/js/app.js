@@ -83,6 +83,7 @@ if (Boolean($('#starts_time').length)) {
    var s = $('#starts_time').attr('value');
    // start timer  
    var timer = window.setInterval(time, 1000);
+   disableRate();
 }
 
 // counts up seconds and makes a time format for #timer span
@@ -113,6 +114,10 @@ $('#task_name').autocomplete({
    focus: function focus(event, ui) {
       $("#task_name").val(ui.item.label);
       return false;
+   },
+   select: function select(event, ui) {
+      $("#task_name").attr('value', ui.item.label);
+      check();
    }
 });
 
@@ -126,8 +131,24 @@ $('#clientDrop').autocomplete({
    },
    select: function select(event, ui) {
       $("#client_id").val(ui.item.id);
+      check();
    }
 });
+
+function check() {
+   var id = $("#client_id").attr('value');
+   var name = $("#task_name").attr('value');
+   var checked = data.find(function (a) {
+      if (a.task_name === name && a.client_id == id) {
+         $('#rate').attr('value', a.rate);
+         disableRate();
+      }
+   });
+}
+
+function disableRate() {
+   $('#rate').css('pointer-events', 'none');
+}
 
 // Drops down list on focus of Client inbox
 $('#clientDrop').on("focus", function (event, ui) {

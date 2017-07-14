@@ -29,18 +29,20 @@
       <div>
          <div class="row" id="topNav">
             <div class="input-group col-5 pr-0 inputTopNav">
-
                @if ($taskRunning)
                   <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" value="{{$running_task['task_name']}}" placeholder="Enter Task Name...">
                @else
-                  <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name"  value="" placeholder="Enter Task Name...">
+                  <input type="text" class="form-control" aria-label="Text input" name="task_name" id="task_name" placeholder="Enter Task Name...">
                @endif
 
             </div> 
 
             <div class="input-group col-3 px-0 inputTopNav">
+
                <input id=client_id name="client_id" type="hidden" value="{{intval($running_task['client_id'])}}">
+
                <input class="form-control" type="text" id="clientDrop" value="{{$clientName}}" placeholder="Select Client">
+
             </div>
             
             <div class="input-group col-2 inputTopNav pr-0">
@@ -50,12 +52,12 @@
                <div class="input-group-addon border-0 bg-inverse">$/hr.</div>
                @if ($taskRunning)
                   <!-- <label class="input-group-addon bg-inverse border-0" for="fader"><output for="fader" id="volume">{{$running_task['rate']}}</output></label> -->
-                  <input class="form-control" type="number" min="5" max="200" value="{{$running_task['rate']}}" id="fader" step="5" name="rate">
+                  <input id="rate" class="form-control" type="number" min="5" max="200" value="{{$running_task['rate']}}" id="fader" step="5" name="rate">
                   <!-- <input class="ml-2" type="range" min="5" max="200" value="{{$running_task['rate']}}" id="fader" step="5" name="rate"> -->
                @else
                   <!-- <label class="input-group-addon bg-inverse border-0" for="fader"><output for="fader" id="volume">100</output></label> -->
 
-                  <input class="form-control" type="number" min="5" max="200" value="{{$running_task['rate']}}" id="fader" step="5" name="rate">
+                  <input id="rate" class="form-control" type="number" min="5" max="200" value="{{$running_task['rate']}}" id="fader" step="5" name="rate">
 
                   <!-- <input class="ml-2" type="range" min="5" max="200" value="100" id="fader" step="5" name="rate"> -->
                @endif
