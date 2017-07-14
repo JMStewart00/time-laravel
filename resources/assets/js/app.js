@@ -6,6 +6,7 @@
       var s = $('#starts_time').attr('value');
     // start timer  
       let timer = window.setInterval(time, 1000);
+      disableRate();
    }
 
 // counts up seconds and makes a time format for #timer span
@@ -29,6 +30,8 @@
       $('#fader').attr('value', val.target.value);
    });
 
+
+
 // Autocomplete list for TASK input, list in TasksController
    $('#task_name').autocomplete({
       minLength: 0,
@@ -36,6 +39,10 @@
       focus: function( event, ui ) {
          $( "#task_name" ).val( ui.item.label );
          return false;
+      },
+      select: function (event, ui) {
+         $( "#task_name" ).attr( 'value', ui.item.label);
+         check();
       }
    });
 
@@ -49,8 +56,24 @@
       },
       select: function (event, ui) {
          $( "#client_id" ).val( ui.item.id );
+         check();
       }
    });
+
+   function check () {
+     let id = $( "#client_id" ).attr('value');
+     let name = $( "#task_name" ).attr('value');
+     let checked = data.find((a)=>{
+        if (a.task_name === name && a.client_id == id){
+          $('#rate').attr('value', a.rate);
+          disableRate();
+        }
+     });
+   }
+
+   function disableRate () {
+     $('#rate').css('pointer-events', 'none');
+   }
 
    // Drops down list on focus of Client inbox
    $('#clientDrop').on( "focus", function( event, ui ) {

@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
    <div class="row">
-      <div id="client_list" class="col-sm-10 col-md-8 mx-auto">
+      <div id="client_list" class="col-sm-10 col-md-8 py-3 px-5 mx-auto">
          <div class="row">
             <form id="add_clients"  class="col p-5 mx-auto" method="POST" action="/clients">
                {{ csrf_field() }}
