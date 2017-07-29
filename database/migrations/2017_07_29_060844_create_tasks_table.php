@@ -13,16 +13,17 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        $table->increments('id');
-        $table->string('task_name');
-        $table->integer('rate');
-        $table->timestamps();
-        $table->timestamp('clock_in');
-        $table->timestamp('clock_out');
-        $table->integer('client_id')->unsigned();
-        $table->foreign('client_id')->references('id')->on('clients');
-        $table->softDeletes();
-
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('task_name');
+            $table->integer('rate');
+            $table->timestamps();
+            $table->timestamp('clock_in');
+            $table->timestamp('clock_out');
+            $table->integer('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients');
+            $table->softDeletes();
+        });
 
     }
 
